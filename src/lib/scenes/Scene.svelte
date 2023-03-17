@@ -2,6 +2,7 @@
 	import * as Threlte from '@threlte/core';
 	import * as Three from 'three';
 	import * as Utils from 'three/src/math/MathUtils';
+	import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
 	import * as TweakpaneImagePlugin from 'tweakpane-image-plugin';
 	import * as Extra from '@threlte/extras';
 	import canvasRecord from "canvas-record"
@@ -19,6 +20,7 @@
 	};
 	const textureLoader: Three.TextureLoader = new Three.TextureLoader();
 	let texture: Three.Texture = new Three.Texture();
+	let controls: OrbitControls;
 
 	const context = Threlte.useThrelte()
 
@@ -72,6 +74,7 @@
 			heightInput.disabled = true
 			urlInput.disabled = true
 			rotationSpeedInput.disabled = true
+			controls.enabled = false
 			const recorder = canvasRecord(context.renderer?.domElement, {
 				frameRate: 60,
 				filename: `${uuidv4()}.webm`
@@ -84,6 +87,7 @@
 			radiusInput.disabled = false
 			heightInput.disabled = false
 			urlInput.disabled = false
+			controls.enabled = true
 			rotationSpeedInput.disabled = false
 			btn.title = 'Render as WEBM';
 		});
@@ -96,6 +100,7 @@
 		autoRotate
 		autoRotateSpeed={xium.rotationSpeed}
 		target={{ x: 0, y: 0, z: 0 }}
+		controls={controls}
 	/>
 </Threlte.PerspectiveCamera>
 
