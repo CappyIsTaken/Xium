@@ -2,7 +2,7 @@
 	import * as Threlte from '@threlte/core';
 	import * as Three from 'three';
 	import * as Utils from 'three/src/math/MathUtils';
-	import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
+	import type OrbitControls from "three/examples/jsm/controls/OrbitControls"
 	import * as TweakpaneImagePlugin from 'tweakpane-image-plugin';
 	import * as Extra from '@threlte/extras';
 	import canvasRecord from "canvas-record"
@@ -20,7 +20,7 @@
 	};
 	const textureLoader: Three.TextureLoader = new Three.TextureLoader();
 	let texture: Three.Texture = new Three.Texture();
-	let controls: OrbitControls;
+	let controls: OrbitControls.OrbitControls;	
 
 	const context = Threlte.useThrelte()
 
@@ -100,7 +100,7 @@
 		autoRotate
 		autoRotateSpeed={xium.rotationSpeed}
 		target={{ x: 0, y: 0, z: 0 }}
-		controls={controls}
+		bind:controls={controls}
 	/>
 </Threlte.PerspectiveCamera>
 
